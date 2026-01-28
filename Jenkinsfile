@@ -39,7 +39,12 @@ stage('UI Tests (Selenium)') {
 
   post {
     always {
-      junit 'target/surefire-reports/*.xml'
+      //junit 'target/surefire-reports/*.xml'
+      junit allowEmptyResults: true, testResults: '''
+            target/surefire-reports/*.xml,
+            target/failsafe-reports/*.xml
+        '''
+
     }
   }
 }

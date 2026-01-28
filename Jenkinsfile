@@ -2,20 +2,27 @@ pipeline {
   agent any
 
   tools {
-    maven 'Maven_3'
-    // jdk 'JDK21'   // add this only if you configured a JDK tool in Jenkins
+    maven 'Maven_3'      // uses the Maven tool you configured in Jenkins
+    // jdk 'JDK21'       // add only if you configured a JDK tool in Jenkins Tools
   }
 
   stages {
     stage('Checkout') {
-      steps { checkout scm }
+      steps {
+        checkout scm
+      }
     }
 
     stage('Build and Test') {
       steps {
-        bat 'mvn -version'
         bat 'mvn clean test package'
       }
+    }
+  }
+
+  post {
+    always {
+      junit 'target/surefire-reports/*.xml'
     }
   }
 }

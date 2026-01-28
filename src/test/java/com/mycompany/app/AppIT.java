@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GoogleSearchIT {
+public class AppIT {
 
     @Test
     void verifyGoogleHomePageLoads() {

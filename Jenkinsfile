@@ -45,6 +45,12 @@ pipeline {
         bat 'echo "Token length is ${GITHUB_TOKEN}"'
       }
     }
+    stage('Build and Test') {
+    steps {
+        bat 'mvn clean verify'
+    }
+}
+
   }
 
   post {

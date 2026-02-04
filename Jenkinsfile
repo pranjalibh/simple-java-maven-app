@@ -54,5 +54,15 @@ pipeline {
         target/failsafe-reports/*.xml
       '''
     }
+    always {
+        publishHTML(target: [
+            reportDir: 'target/site/jacoco',
+            reportFiles: 'index.html',
+            reportName: 'JaCoCo Code Coverage',
+            keepAll: true,
+            alwaysLinkToLastBuild: true
+        ])
+    }
+
   }
 }

@@ -42,7 +42,7 @@ pipeline {
     }
     stage('Secure Step'){
       steps{
-        sh 'echo "Token length is ${GITHUB_TOKEN}"'
+        bat 'echo "Token length is ${GITHUB_TOKEN}"'
       }
     }
   }

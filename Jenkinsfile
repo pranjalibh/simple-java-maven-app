@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment{
+    GITHUB_TOKEN = credentials('github-token')
+  }
+
   tools {
     maven 'Maven_3'
     // jdk 'JDK21'   // enable only if you configured this in Jenkins Tools
@@ -34,6 +38,11 @@ pipeline {
       steps {
         // Run integration/UI tests (commonly via failsafe)
         bat 'mvn -B verify -DskipUnitTests=true'
+      }
+    }
+    stage('Secure Step'){
+      steps{
+        sh 'echo "Token length is ${GITHUB_TOKEN}"'
       }
     }
   }
